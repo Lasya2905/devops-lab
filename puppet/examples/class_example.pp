@@ -16,6 +16,6 @@ define make_file (String $text) {
 class { 'greeting': msg => 'Welcome to Puppet Classes' }
 make_file { 'demo1': text => 'created by defined type' }
 
-$name = upcase('puppet')
-notice("Built-in function upcase gives: ${name}")
+$upper_name = upcase('puppet')
+notice("Built-in function upcase gives: ${upper_name}")
 notify { "Joined: ${join(['a','b','c'], '-')}": }
