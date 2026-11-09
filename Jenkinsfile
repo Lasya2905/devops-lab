@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/opt/homebrew/bin:/usr/local/bin:/Applications/Docker.app/Contents/Resources/bin:${env.PATH}"
+    }
     stages {
         stage('Checkout') {
             steps { checkout scm }
@@ -19,7 +22,7 @@ pipeline {
         stage('Run') {
             steps {
                 sh 'docker rm -f devops-lab || true'
-                sh 'docker run -d --name devops-lab -p 5000:5000 devops-lab:${BUILD_NUMBER}'
+                sh 'docker run -d --name devops-lab -p 5001:5000 devops-lab:${BUILD_NUMBER}'
             }
         }
     }

@@ -1,12 +1,13 @@
-# Experiment 8: first manifest (resources: file, package, notify)
+# Experiment 8: first manifest (works on macOS and Linux)
 file { '/tmp/hello_puppet.txt':
   ensure  => file,
   content => "Hello from Puppet\n",
   mode    => '0644',
 }
 
-package { 'tree':
-  ensure => installed,
+exec { 'save_date':
+  command => '/bin/date > /tmp/puppet_date.txt',
+  creates => '/tmp/puppet_date.txt',
 }
 
 notify { 'Puppet manifest applied successfully': }
